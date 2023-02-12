@@ -9,12 +9,19 @@ import UIKit
 import Combine
 
 class MovieListViewController: UIViewController {
+    
+    struct Constants {
+        static let pageTitle: String = "Movies"
+    }
+    
     private lazy var viewModel = MovieViewModel()
     private var cancelable = Set<AnyCancellable>()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -33,7 +40,7 @@ private extension MovieListViewController {
                 }
             }.store(in: &cancelable)
         
-        title = "Movies"
+        title = Constants.pageTitle
         
         setupUI()
         setupConstraints()
@@ -44,6 +51,7 @@ private extension MovieListViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         
         tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: MovieListTableViewCell.reuseIdentifier)
     }
@@ -59,6 +67,8 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.reuseIdentifier) as? MovieListTableViewCell {
+            cell.selectionStyle = .none
+            //cell.set(result: viewModel.movies[indexPath.row])
             return cell
         }
         return UITableViewCell()

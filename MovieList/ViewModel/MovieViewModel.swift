@@ -40,7 +40,8 @@ extension MovieViewModel {
             let movieFuture = self.movieService.getMovies(pageNumber: self.currentPage)
             movieFuture.execute { [weak self] (movieResponse) in
                 guard let self else { return }
-                print(movieResponse.results)
+                self.movies.append(contentsOf: movieResponse.results)
+                
             } onFailure: { (error) in
                 print(error)
             }
