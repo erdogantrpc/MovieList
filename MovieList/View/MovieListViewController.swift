@@ -12,11 +12,13 @@ class MovieListViewController: UIViewController {
     
     struct Constants {
         static let pageTitle: String = "Movies"
+        static let cellHeight: CGFloat = 150
+        static let indicatorSize: CGFloat = 50
     }
     
     private lazy var viewModel = MovieViewModel()
     private var cancelable = Set<AnyCancellable>()
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +26,15 @@ class MovieListViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.frame.size.width = Constants.indicatorSize
+        indicator.frame.size.height = Constants.indicatorSize
+        return indicator
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +73,43 @@ private extension MovieListViewController {
 }
 
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == .zero {
+            return Constants.cellHeight
+        } else {
+            return Constants.indicatorSize
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.isExtend ? 2 : 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if section == .zero {
+            return viewModel.movies.count
+        } else {
+            return 1
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.reuseIdentifier) as? MovieListTableViewCell {
+        
+        if indexPath.section == .zero {
+            if indexPath.row == viewModel.movies.count - 1 {
+                viewModel.extendResult()
+            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.reuseIdentifier) as! MovieListTableViewCell
+            let movie = viewModel.movies[indexPath.row]
             cell.selectionStyle = .none
-            //cell.set(result: viewModel.movies[indexPath.row])
+            cell.set(result: movie)
+            return cell
+        } else {
+            let cell = UITableViewCell()
+            activityIndicator.center = CGPoint(x: cell.center.x + activityIndicator.frame.width / 2, y: cell.center.y)
+            cell.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             return cell
         }
-        return UITableViewCell()
     }
 }

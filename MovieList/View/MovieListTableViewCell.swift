@@ -11,7 +11,9 @@ import AlamofireImage
 class MovieListTableViewCell: UITableViewCell {
     
     struct Constants {
-        static let ratingLabelText = "/10"
+        static let ratingLabelText: String = "/10"
+        static let titleFont: String = "HelveticaNeue-Bold"
+        static let titleFontSize: CGFloat = 18
     }
     
     private let holderView: UIView = {
@@ -19,7 +21,7 @@ class MovieListTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.cornerRadius = 12
-        view.layer.borderWidth = 2
+        view.layer.borderWidth = 1
         return view
     }()
     
@@ -27,28 +29,27 @@ class MovieListTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 12
-        imageView.layer.borderWidth = 1
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Movie"
+        label.numberOfLines = 0
+        label.font = UIFont(name: Constants.titleFont, size: Constants.titleFontSize)
         return label
     }()
     
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "12.12.12"
         return label
     }()
     
     private let ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "12"
         return label
     }()
     
@@ -72,6 +73,7 @@ extension MovieListTableViewCell {
         }
         releaseDateLabel.text = result.releaseDate
         ratingLabel.text = String(describing: result.voteAverage) + Constants.ratingLabelText
+        ratingLabel.textColor = result.rateColor
     }
 }
 
@@ -90,15 +92,16 @@ private extension MovieListTableViewCell {
             holderView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             holderView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             holderView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            holderView.heightAnchor.constraint(equalToConstant: 140),
+            //holderView.heightAnchor.constraint(equalToConstant: 150),
             
             movieImageView.leadingAnchor.constraint(equalTo: holderView.leadingAnchor, constant: 12),
             movieImageView.centerYAnchor.constraint(equalTo: holderView.centerYAnchor),
-            movieImageView.heightAnchor.constraint(equalToConstant: 120),
-            movieImageView.widthAnchor.constraint(equalToConstant: 100),
+            movieImageView.heightAnchor.constraint(equalToConstant: 100),
+            movieImageView.widthAnchor.constraint(equalToConstant: 123),
             
-            titleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 48),
-            titleLabel.centerYAnchor.constraint(equalTo: holderView.centerYAnchor, constant: -12),
+            titleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: holderView.trailingAnchor, constant: -2),
+            titleLabel.centerYAnchor.constraint(equalTo: holderView.centerYAnchor, constant: -25),
             
             releaseDateLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             releaseDateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),

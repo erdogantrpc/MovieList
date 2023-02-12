@@ -19,7 +19,7 @@ class MovieViewModel {
     
     @Published var isLoadData = false
     
-    private var totalPageSize: Int = 5
+    private var totalPageSize: Int = 4
     private var currentPage: Int = 1
     private var workItem: DispatchWorkItem?
     
@@ -41,7 +41,7 @@ extension MovieViewModel {
             movieFuture.execute { [weak self] (movieResponse) in
                 guard let self else { return }
                 self.movies.append(contentsOf: movieResponse.results)
-                
+                self.isLoadData = true
             } onFailure: { (error) in
                 print(error)
             }

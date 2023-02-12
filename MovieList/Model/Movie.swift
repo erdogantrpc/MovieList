@@ -35,6 +35,16 @@ struct Result: Codable {
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
+    var rateColor: UIColor {
+        switch voteAverage {
+        case 0...(6.9):
+            return UIColor.systemRed
+        case 7...(8.9):
+            return UIColor.systemOrange
+        default:
+            return UIColor.systemGreen
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case adult
