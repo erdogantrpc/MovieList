@@ -12,8 +12,6 @@ class MovieListTableViewCell: UITableViewCell {
     
     struct Constants {
         static let ratingLabelText: String = "/10"
-        static let titleFont: String = "HelveticaNeue-Bold"
-        static let titleFontSize: CGFloat = 18
     }
     
     private let holderView: UIView = {
@@ -37,7 +35,7 @@ class MovieListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont(name: Constants.titleFont, size: Constants.titleFontSize)
+        label.font = UIFont(name: AppConstants.titleFont, size: AppConstants.titleFontSize)
         return label
     }()
     
