@@ -23,6 +23,9 @@
 		AC54EEBD2997DEC8000287BA /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEBC2997DEC8000287BA /* Encodable+Extension.swift */; };
 		AC54EEBF2997DF85000287BA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEBE2997DF85000287BA /* AppConstants.swift */; };
 		AC54EEC32997E01B000287BA /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEC22997E01B000287BA /* MovieListViewController.swift */; };
+		AC54EEC52997FA25000287BA /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEC42997FA25000287BA /* MovieListTableViewCell.swift */; };
+		AC54EEC82998DAB4000287BA /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEC72998DAB4000287BA /* MovieViewModel.swift */; };
+		AC54EECA2998DE72000287BA /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54EEC92998DE72000287BA /* UITableViewCell+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		AC54EEBC2997DEC8000287BA /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		AC54EEBE2997DF85000287BA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		AC54EEC22997E01B000287BA /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
+		AC54EEC42997FA25000287BA /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
+		AC54EEC72998DAB4000287BA /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		AC54EEC92998DE72000287BA /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		B02EF52AD607EC9FA972C4FD /* Pods_MovieList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF63A2BFFB080D47CE6A5DC8 /* Pods-MovieList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.release.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,10 +98,11 @@
 		AC54EE962997B517000287BA /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				AC54EEC62997FC1B000287BA /* ViewModel */,
 				AC54EEC12997DFF8000287BA /* View */,
 				AC54EEC02997DF8F000287BA /* Constants */,
-				AC54EEB72997DE34000287BA /* Extensions */,
 				AC54EEB42997DC7A000287BA /* Model */,
+				AC54EEB72997DE34000287BA /* Extensions */,
 				AC54EEAD2997DC31000287BA /* Network */,
 				AC54EE9B2997B517000287BA /* ViewController.swift */,
 				AC54EEA02997B518000287BA /* Assets.xcassets */,
@@ -146,6 +153,7 @@
 				AC54EEB82997DE42000287BA /* UIView+Extension.swift */,
 				AC54EEBA2997DEA6000287BA /* Data+Extension.swift */,
 				AC54EEBC2997DEC8000287BA /* Encodable+Extension.swift */,
+				AC54EEC92998DE72000287BA /* UITableViewCell+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,8 +170,17 @@
 			isa = PBXGroup;
 			children = (
 				AC54EEC22997E01B000287BA /* MovieListViewController.swift */,
+				AC54EEC42997FA25000287BA /* MovieListTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AC54EEC62997FC1B000287BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC54EEC72998DAB4000287BA /* MovieViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F91254A8A95F33F0BFFD3753 /* Frameworks */ = {
@@ -290,13 +307,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC54EEB32997DC76000287BA /* Movie.swift in Sources */,
+				AC54EECA2998DE72000287BA /* UITableViewCell+Extension.swift in Sources */,
 				AC54EE9C2997B517000287BA /* ViewController.swift in Sources */,
 				AC54EEB92997DE42000287BA /* UIView+Extension.swift in Sources */,
 				AC54EEC32997E01B000287BA /* MovieListViewController.swift in Sources */,
 				AC54EEBF2997DF85000287BA /* AppConstants.swift in Sources */,
+				AC54EEC82998DAB4000287BA /* MovieViewModel.swift in Sources */,
 				AC54EEBD2997DEC8000287BA /* Encodable+Extension.swift in Sources */,
 				AC54EEB12997DC65000287BA /* APIRouter.swift in Sources */,
 				AC54EE982997B517000287BA /* AppDelegate.swift in Sources */,
+				AC54EEC52997FA25000287BA /* MovieListTableViewCell.swift in Sources */,
 				AC54EEAC2997DC26000287BA /* Configuration.swift in Sources */,
 				AC54EEAF2997DC4C000287BA /* APIClient.swift in Sources */,
 				AC54EE9A2997B517000287BA /* SceneDelegate.swift in Sources */,
